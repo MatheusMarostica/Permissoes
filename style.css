@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #eff6ff;
+  color: #000000;
+}
+
+.header > h1 {
+  color: #eff6ff;
+}
+
+.header {
+  height: 160px;
+  background: linear-gradient(
+    135deg,
+    #1f2d40,
+    #2e3e8c,
+    #3f51b5
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.filters {
+  background: #eff6ff;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.filters input,
+.filters select {
+  padding: 8px 10px;
+  min-width: 220px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.permissions-container {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 16px;
+}
+
+.permission-card {
+  background: #fff;
+  border-left: 6px solid #1f2d40;
+  border-radius: 6px;
+  padding: 15px 18px;
+}
+
+.permission-card h3 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.permission-meta {
+  font-size: 13px;
+  color: #555;
+}
