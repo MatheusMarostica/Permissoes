@@ -1,4 +1,4 @@
-// 🎨 CORES POR SESSÃO
+// CORES PROJETO
 const sessionColors = {
   "Vendas": "#1e88e5",
   "Produtos": "#43a047",
@@ -11,7 +11,7 @@ const sessionColors = {
   "Aplicativo": "#3949ab"
 };
 
-// 📋 TODAS AS PERMISSÕES
+// TODAS AS PERMISSÕES
 const permissions = [
   { name: "Adicionar novos itens à vendas de delivery", session: "Vendas", category: "Delivery" },
   { name: "Alterar Forma de Pagamento", session: "Vendas", category: "Pagamento" },
@@ -71,13 +71,11 @@ const permissions = [
   { name: "Acesso ao Aplicativo SAIPOS Gestão", session: "Aplicativo", category: "Acesso" }
 ];
 
-// ELEMENTOS
 const container = document.getElementById("permissionsContainer");
 const searchInput = document.getElementById("searchInput");
 const sessionFilter = document.getElementById("sessionFilter");
 const categoryFilter = document.getElementById("categoryFilter");
 
-// POPULA FILTROS
 function populateFilters() {
   [...new Set(permissions.map(p => p.session))]
     .forEach(s => sessionFilter.innerHTML += `<option value="${s}">${s}</option>`);
@@ -86,7 +84,6 @@ function populateFilters() {
     .forEach(c => categoryFilter.innerHTML += `<option value="${c}">${c}</option>`);
 }
 
-// RENDERIZAÇÃO
 function renderPermissions() {
   container.innerHTML = "";
   const search = searchInput.value.toLowerCase();
@@ -97,26 +94,48 @@ function renderPermissions() {
       (sessionFilter.value === "" || p.session === sessionFilter.value) &&
       (categoryFilter.value === "" || p.category === categoryFilter.value)
     )
-    .forEach(p => {
+    .forEach((p, index) => {
       const color = sessionColors[p.session] || "#1f2d40";
 
       container.innerHTML += `
         <div class="permission-card" style="border-left-color: ${color}">
           <h3>${p.name}</h3>
+          
           <div class="permission-meta">
             <strong>Sessão:</strong> ${p.session}<br>
             <strong>Categoria:</strong> ${p.category}
           </div>
+
+          <div class="permission-extra" id="extra-${index}">
+            Esta permissão permite ao usuário executar ações relacionadas a "${p.name}" dentro do módulo ${p.session}.
+          </div>
+
+          <button class="btn-ver-mais" onclick="toggleInfo(${index})">
+            Ver mais
+          </button>
         </div>
       `;
     });
 }
 
-// EVENTOS
+function toggleInfo(index) {
+  const extra = document.getElementById(`extra-${index}`);
+  const button = extra.nextElementSibling;
+
+  extra.classList.toggle("active");
+
+  if (extra.classList.contains("active")) {
+    button.textContent = "Ver menos";
+  } else {
+    button.textContent = "Ver mais";
+  }
+}
+
+
+
 searchInput.addEventListener("input", renderPermissions);
 sessionFilter.addEventListener("change", renderPermissions);
 categoryFilter.addEventListener("change", renderPermissions);
 
-// INIT
 populateFilters();
 renderPermissions();
