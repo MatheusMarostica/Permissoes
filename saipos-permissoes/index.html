@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Permissões do Sistema SAIPOS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-logo">
+    <img src="assets/allen_nobg.png" alt="Saipos">
+    <span class="header-logo-text">Saipos</span>
+  </div>
+  <div class="header-divider"></div>
+  <span class="header-title">Permissões do Sistema</span>
+</header>
+
+<section class="filters">
+  <input type="text" id="searchInput" placeholder="Buscar permissão...">
+  <select id="sessionFilter">
+    <option value="">Todas as Sessões</option>
+  </select>
+  <select id="categoryFilter">
+    <option value="">Todas as Categorias</option>
+  </select>
+</section>
+
+<main id="permissionsContainer" class="permissions-container"></main>
+
+<script src="permisoes.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
