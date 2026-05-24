@@ -1,4 +1,7 @@
 const permissoes = [
+  // ──────────────────────────────────────────────────────────────
+  // VENDAS
+  // ──────────────────────────────────────────────────────────────
   {
     name: "Adicionar novos itens à vendas de delivery",
     session: "Vendas",
@@ -7,7 +10,7 @@ const permissoes = [
     confianca: "✅",
     objetivo: "Impedir que o usuário adicione novos itens à vendas delivery já lançadas.",
     oQueFaz: "Se o usuário acessar uma venda existente e tentar lançar um novo produto do cardápio nela, ele será impedido por uma mensagem de erro.",
-    oQueNaoFaz: "Não impede de adicionar opcionais à vendas já lançadas / não impede de lançar novas vendas de delivery."
+    oQueNaoFaz: "Não impede de adicionar opcionais à vendas já lançadas / não impede de lançar vendas de delivery."
   },
   {
     name: "Alterar Forma de Pagamento",
@@ -35,9 +38,9 @@ const permissoes = [
     category: "Atendimento",
     nivel: "operacional",
     confianca: "✅",
-    objetivo: "Impossibilitar que o usuário lance vendas do tipo Ficha.",
+    objetivo: "Impossibilitar que o usuário lance vendas de tipo Ficha.",
     oQueFaz: "Remove o Módulo de Ficha do header do sistema.",
-    oQueNaoFaz: "Não impossibilita editar/movimentar/cancelar vendas de Ficha já existentes."
+    oQueNaoFaz: "Não impossibilita editar/movimentar/cancelar vendas de Ficha."
   },
   {
     name: "Atendimento de mesas",
@@ -45,7 +48,7 @@ const permissoes = [
     category: "Atendimento",
     nivel: "operacional",
     confianca: "✅",
-    objetivo: "Impossibilitar que o usuário lance vendas do tipo Salão.",
+    objetivo: "Impossibilitar que o usuário lance vendas de tipo Salão.",
     oQueFaz: "Remove o Módulo de Salão do header do sistema.",
     oQueNaoFaz: "Não impede de cancelar vendas de salão via Vendas por período."
   },
@@ -76,7 +79,7 @@ const permissoes = [
     nivel: "operacional",
     confianca: "✅",
     objetivo: "Impedir acesso à função 'Check-in do Entregador' para registro de chegada para coleta de pedido.",
-    oQueFaz: "Remove o Check-in de Entregadores do header do sistema — e não permite acesso nem se o usuário for do Tipo '6 - Check-in de Entregador'.",
+    oQueFaz: "Remove o Check-in de Entregadores do header do sistema e não permite acesso nem se o usuário for do Tipo '6 - Check-in de Entregador'.",
     oQueNaoFaz: "-"
   },
   {
@@ -90,9 +93,9 @@ const permissoes = [
     oQueNaoFaz: "Não impede de editar/mover de status vendas de Delivery via Vendas por período."
   },
   {
-    name: "Display para entregadores",
+    name: "Painel de pedidos prontos",
     session: "Vendas",
-    category: "Entrega",
+    category: "Pedidos",
     nivel: "operacional",
     confianca: "✅",
     objetivo: "Impedir acesso à função 'Painel de pedidos prontos' para visualização gráfica do status das vendas.",
@@ -100,7 +103,7 @@ const permissoes = [
     oQueNaoFaz: "-"
   },
   {
-    name: "Editar desconto de venda de delivery",
+    name: "Editar desconto de venda de delivery, ficha e balcão",
     session: "Vendas",
     category: "Delivery",
     nivel: "sensivel",
@@ -110,17 +113,17 @@ const permissoes = [
     oQueNaoFaz: "Não impossibilita lançar vendas com desconto aplicado / Não impossibilita cadastrar cupons de desconto em Menu > Cupons de desconto."
   },
   {
-    name: "Editar endereço de entrega",
+    name: "Editar endereço de entrega de delivery",
     session: "Vendas",
     category: "Delivery",
     nivel: "sensivel",
     confianca: "✅",
     objetivo: "Impedir que o usuário altere o endereço do cliente na venda de delivery.",
-    oQueFaz: "Exibe uma notificação informando que o usuário não possui permissão quando tenta salvar a venda após alterar o endereço do cliente vinculado a ela.",
+    oQueFaz: "Exibe uma notificação informando que o usuário não possui permissão quando tenta salvar a venda após alterar o endereço do cliente vinculado à ela.",
     oQueNaoFaz: "Não impossibilita editar taxa de entrega e valor de repasse ao motoboy."
   },
   {
-    name: "Editar itens da mesa aberta",
+    name: "Editar itens da mesa aberta (consumindo)",
     session: "Vendas",
     category: "Salão",
     nivel: "sensivel",
@@ -130,7 +133,7 @@ const permissoes = [
     oQueNaoFaz: "Não impede adicionar itens em uma mesa aberta / Não impede excluir itens em uma mesa aberta."
   },
   {
-    name: "Editar taxa de entrega",
+    name: "Editar taxa de entrega de delivery",
     session: "Vendas",
     category: "Delivery",
     nivel: "sensivel",
@@ -145,19 +148,29 @@ const permissoes = [
     category: "Salão",
     nivel: "sensivel",
     confianca: "✅",
-    objetivo: "Impedir que o usuário realize o pagamento e fechamento de mesas/comandas no Módulo de Salão.",
+    objetivo: "Impedir que o usuário realize o pagamento e fechamento de comandas/mesas no Módulo de Salão.",
     oQueFaz: "Remove o botão 'FECHAR CONTA' em vendas de salão.",
     oQueNaoFaz: "-"
   },
   {
-    name: "Editar mesa após fechamento",
+    name: "Incluir e editar vendas de delivery e mudar status de vendas (Delivery, Balcão e Ficha no kanban e Fechamento de mesas)",
+    session: "Vendas",
+    category: "Vendas",
+    nivel: "critica",
+    confianca: "✅",
+    objetivo: "Impedir lançamento/edição de vendas delivery/balcão e movimentação de status de vendas de qualquer tipo.",
+    oQueFaz: "Impede o lançamento de vendas de delivery/balcão / Impede a movimentação de status de vendas de delivery/balcão e ficha / Impede o fechamento de mesas / Impede a edição de vendas de delivery/salão / Impede o cancelamento de vendas.",
+    oQueNaoFaz: "Não impede o lançamento de vendas de ficha e salão / Não impede o lançamento de pagamento em vendas de salão (mas impede o fechamento da mesa) / Não impede a edição de vendas de ficha / Não impede a edição de vendas de salão."
+  },
+  {
+    name: "Incluir, editar e excluir itens da mesa após pedir a conta ou fechada",
     session: "Vendas",
     category: "Salão",
     nivel: "critica",
     confianca: "✅",
     objetivo: "Impedir que vendas de salão que já foram fechadas ou estão no status 'Pediu a conta' sejam editadas.",
     oQueFaz: "Exibe uma notificação caso o usuário tente editar uma venda de salão com o status 'Pediu conta' (laranja) ou 'Fechada' (disponível via Vendas por período).",
-    oQueNaoFaz: "Não impede a edição de vendas de salão em consumo ou ociosas / Não impede alterar status via tela de venda (Vendas por período), porém isso não reabre a mesa."
+    oQueNaoFaz: "Não impede a edição de vendas de salão em consumo ou ociosas / Não impede alterar status via tela de venda (Vendas por período), porém isso não faz com que a mesa seja reaberta."
   },
   {
     name: "KDS",
@@ -166,7 +179,17 @@ const permissoes = [
     nivel: "operacional",
     confianca: "✅",
     objetivo: "Impedir acesso ao KDS.",
-    oQueFaz: "Remove o botão KDS do header do sistema — mesmo se o usuário for do tipo 3-KDS.",
+    oQueFaz: "Remove o botão KDS do header do sistema mesmo se o usuário for do tipo 3-KDS.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Transferência de mesas e itens em vendas de mesa",
+    session: "Vendas",
+    category: "Salão",
+    nivel: "sensivel",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário transfira itens entre comandas/mesas.",
+    oQueFaz: "Bloqueia o botão usado para transferir itens.",
     oQueNaoFaz: "-"
   },
   {
@@ -175,20 +198,21 @@ const permissoes = [
     category: "Salão",
     nivel: "operacional",
     confianca: "✅",
-    objetivo: "Impedir visualização de mesas finalizadas no Módulo de Salão.",
+    objetivo: "Fazer com que o usuário tenha acesso apenas a mesas em consumo e ociosas.",
     oQueFaz: "Remove o botão 'Finalizadas' do Módulo de Salão.",
     oQueNaoFaz: "Não impede a visualização de vendas finalizadas via 'Vendas por Período'."
   },
 
-  
-
+  // ──────────────────────────────────────────────────────────────
+  // PRODUTOS
+  // ──────────────────────────────────────────────────────────────
   {
     name: "Alteração rápida de preços",
     session: "Produtos",
     category: "Cardápio",
     nivel: "sensivel",
     confianca: "✅",
-    objetivo: "Impedir que o usuário use a função de alteração de preços rápida na tela inicial do cardápio.",
+    objetivo: "Impedir que o usuário use a função de alteração de preços rápida, onde ele altera diretamente na tela inicial do cardápio.",
     oQueFaz: "Bloqueia acesso ao campo de preço do produto na tela inicial do cardápio.",
     oQueNaoFaz: "Não impede alteração de preço pela tela de cadastro/edição de produto / Não impede alteração de preço de opcionais via tela inicial de cardápio."
   },
@@ -235,7 +259,7 @@ const permissoes = [
   {
     name: "Garçons",
     session: "Produtos",
-    category: "Cadastro",
+    category: "Salão",
     nivel: "sensivel",
     confianca: "✅",
     objetivo: "Impedir cadastro, edição e exclusão de garçons para o Módulo de Salão.",
@@ -262,9 +286,104 @@ const permissoes = [
     oQueFaz: "Indisponibiliza as opções 'Cadastrar pizza', 'Cadastrar outros produtos', bem como as opções de edição de produtos na tela de cardápio.",
     oQueNaoFaz: "Não impede a alteração rápida de preços de produtos."
   },
+  {
+    name: "Produtos - Alteração de Preços",
+    session: "Produtos",
+    category: "Cardápio",
+    nivel: "sensivel",
+    confianca: "❓",
+    objetivo: "Impedir que o usuário altere o preço de produtos.",
+    oQueFaz: "Comportamento não foi possível confirmar.",
+    oQueNaoFaz: "Detalhamento não encontrado na análise."
+  },
+  {
+    name: "Variações & Tamanhos",
+    session: "Produtos",
+    category: "Cardápio",
+    nivel: "operacional",
+    confianca: "❓",
+    objetivo: "Detalhamento não encontrado na análise.",
+    oQueFaz: "Detalhamento não encontrado na análise.",
+    oQueNaoFaz: "Detalhamento não encontrado na análise."
+  },
 
-  
+  // ──────────────────────────────────────────────────────────────
+  // DASHBOARDS
+  // ──────────────────────────────────────────────────────────────
+  {
+    name: "Acompanhamento de vendas",
+    session: "Dashboards",
+    category: "Vendas",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao dashboard 'Acompanhamento de vendas'.",
+    oQueFaz: "Remove a aba 'Acompanhamento de vendas' do menu esquerdo.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Acompanhamento de vendas multilojas",
+    session: "Dashboards",
+    category: "Vendas",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao dashboard 'Acompanhamento de vendas multilojas'.",
+    oQueFaz: "Remove a aba 'Acompanhamento de vendas multilojas' do menu esquerdo.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Dashboard de faturamento de franquia",
+    session: "Dashboards",
+    category: "Faturamento",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao dashboard 'Faturamento'.",
+    oQueFaz: "Remove a aba 'Faturamento' do menu esquerdo.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Dashboard de vendas de franquia por canal",
+    session: "Dashboards",
+    category: "Vendas",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao dashboard 'Canais'.",
+    oQueFaz: "Remove a aba 'Canais' do menu esquerdo.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Dashboard de vendas de franquia por data e hora",
+    session: "Dashboards",
+    category: "Vendas",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao dashboard 'Vendas por Data / Hora'.",
+    oQueFaz: "Remove a aba 'Vendas por Data / Hora' do menu esquerdo.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Desempenho por atendente",
+    session: "Dashboards",
+    category: "Desempenho",
+    nivel: "operacional",
+    confianca: "❓",
+    objetivo: "Impedir acesso ao dashboard / relatório 'Desempenho por atendente'.",
+    oQueFaz: "Comportamento não foi possível confirmar.",
+    oQueNaoFaz: "Detalhamento não encontrado na análise."
+  },
+  {
+    name: "Desempenho por garçom",
+    session: "Dashboards",
+    category: "Desempenho",
+    nivel: "operacional",
+    confianca: "❓",
+    objetivo: "Impedir acesso ao dashboard / relatório 'Desempenho por garçom'.",
+    oQueFaz: "Comportamento não foi possível confirmar.",
+    oQueNaoFaz: "Detalhamento não encontrado na análise."
+  },
 
+  // ──────────────────────────────────────────────────────────────
+  // FINANCEIRO
+  // ──────────────────────────────────────────────────────────────
   {
     name: "Abertura e Fechamento de Caixa",
     session: "Financeiro",
@@ -326,6 +445,16 @@ const permissoes = [
     oQueNaoFaz: "-"
   },
   {
+    name: "Fluxo de Caixa",
+    session: "Financeiro",
+    category: "Relatório",
+    nivel: "sensivel",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário visualize o relatório 'Fluxo de caixa'.",
+    oQueFaz: "Remove o caminho Menu > Fluxo de caixa do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
     name: "Formas de pagamento",
     session: "Financeiro",
     category: "Pagamento",
@@ -351,7 +480,7 @@ const permissoes = [
     category: "Frente de Caixa",
     nivel: "sensivel",
     confianca: "✅",
-    objetivo: "Impedir que o usuário acesse o Menu > Frentes de caixa e veja os caixas abertos e fechamentos antigos.",
+    objetivo: "Impedir que o usuário acesse o Menu > Frentes de caixa e veja os caixas abertos e fechamento de caixas antigos.",
     oQueFaz: "Remove o caminho Menu > Frentes de caixa do sistema.",
     oQueNaoFaz: "Não impede abrir e fechar frentes de caixa, bem como não impede a visualização completa da conferência do próprio caixa."
   },
@@ -371,7 +500,7 @@ const permissoes = [
     category: "Financeiro",
     nivel: "critica",
     confianca: "✅",
-    objetivo: "Impedir que o usuário registre, visualize, edite ou remova lançamentos financeiros.",
+    objetivo: "Impedir que o usuário registre, visualize, edite ou remova lançamentos financeiras.",
     oQueFaz: "Remove o caminho Menu > Lançamentos financeiros do sistema.",
     oQueNaoFaz: "Não impede de realizar conciliações financeiras via Menu > Notas de entrada / Não impede de criar lançamentos financeiros via Menu > Conciliação bancária / Não impede lançamentos de retirada e reforço de caixa."
   },
@@ -391,13 +520,352 @@ const permissoes = [
     category: "Frente de Caixa",
     nivel: "sensivel",
     confianca: "✅",
-    objetivo: "Impedir que o usuário lance retiradas do tipo 'Pagamento' via frente de caixa.",
-    oQueFaz: "Se o usuário clicar para lançar uma retirada via frente de caixa, o sistema direciona direto para tipo 'Sangria'.",
+    objetivo: "Impedir que o usuário lance retiradas de tipo 'Pagamento' via frente de caixa.",
+    oQueFaz: "Se o usuário clicar para lançar uma retirada via frente de caixa, cai direto para tipo 'Sangria'.",
     oQueNaoFaz: "Não impossibilita alterar formas de pagamentos e valores de venda na conferência de frente de caixa."
   },
 
-  
+  // ──────────────────────────────────────────────────────────────
+  // RELATÓRIOS
+  // ──────────────────────────────────────────────────────────────
+  {
+    name: "Cupons gerados",
+    session: "Relatórios",
+    category: "Fiscal",
+    nivel: "critica",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'Cupons gerados' e, consequentemente, acesso à exportação de XML.",
+    oQueFaz: "Remove o caminho Menu > Cupons gerados do sistema.",
+    oQueNaoFaz: "Não impede de visualizar informações de cupons fiscais emitidos em Menu > Vendas por período."
+  },
+  {
+    name: "Desempenho por atendente (Relatório)",
+    session: "Relatórios",
+    category: "Desempenho",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'Desempenho por atendente'.",
+    oQueFaz: "Remove o caminho Menu > Desempenho por atendente do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Desempenho por garçom (Relatório)",
+    session: "Relatórios",
+    category: "Desempenho",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'Desempenho por garçom'.",
+    oQueFaz: "Remove o caminho Menu > Desempenho por garçom do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "DRE Gerencial/Financeiro",
+    session: "Relatórios",
+    category: "Financeiro",
+    nivel: "critica",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'DRE Gerencial/Financeiro'.",
+    oQueFaz: "Remove o caminho Menu > DRE Gerencial/Financeiro do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Faturamento por dia",
+    session: "Relatórios",
+    category: "Faturamento",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'Faturamento por dia'.",
+    oQueFaz: "Remove o caminho Menu > Faturamento por dia do sistema.",
+    oQueNaoFaz: "Não impede acesso à dados de faturamento presentes em outros relatórios."
+  },
+  {
+    name: "Itens consumidos",
+    session: "Relatórios",
+    category: "Estoque",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'Itens consumidos'.",
+    oQueFaz: "Remove o caminho Menu > Itens consumidos do sistema.",
+    oQueNaoFaz: "Não impede acesso à dados de baixa no estoque via Menu > Movimentações de estoque."
+  },
+  {
+    name: "Itens vendidos",
+    session: "Relatórios",
+    category: "Vendas",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'Itens vendidos'.",
+    oQueFaz: "Remove o caminho Menu > Itens vendidos do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Resumo diário",
+    session: "Relatórios",
+    category: "Vendas",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso à aba 'Resumo diário' em contexto de uso do modo Delivery-Abas ao invés do Kanban.",
+    oQueFaz: "Remove aba 'Resumo diário'.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Tempo de produção",
+    session: "Relatórios",
+    category: "Produção",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'Tempo de produção'.",
+    oQueFaz: "Remove o caminho Menu > Tempo de produção do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Tempo por status",
+    session: "Relatórios",
+    category: "Produção",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'Tempo por status'.",
+    oQueFaz: "Remove o caminho Menu > Tempo por status do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Vendas por área de entrega",
+    session: "Relatórios",
+    category: "Delivery",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'Vendas por área de entrega'.",
+    oQueFaz: "Remove o caminho Menu > Vendas por área de entrega do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Vendas por forma de pagamento",
+    session: "Relatórios",
+    category: "Vendas",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'Vendas por forma de pagamento'.",
+    oQueFaz: "Remove o caminho Menu > Vendas por forma de pagamento do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Vendas por período",
+    session: "Relatórios",
+    category: "Vendas",
+    nivel: "critica",
+    confianca: "✅",
+    objetivo: "Impedir acesso ao relatório 'Vendas por período'.",
+    oQueFaz: "Remove o caminho Menu > Vendas por período do sistema.",
+    oQueNaoFaz: "-"
+  },
 
+  // ──────────────────────────────────────────────────────────────
+  // CONTROLE DE ESTOQUE
+  // ──────────────────────────────────────────────────────────────
+  {
+    name: "Análise e simulação de CMV",
+    session: "Controle de Estoque",
+    category: "CMV",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso à função de 'Análise e simulação de CMV'.",
+    oQueFaz: "Remove o caminho Menu > Análise e simulação de CMV do sistema.",
+    oQueNaoFaz: "Não impede acesso a outras 'fontes' de análise de CMV, como relatório DRE, CMV Real e Itens Consumidos."
+  },
+  {
+    name: "Contagem de estoque",
+    session: "Controle de Estoque",
+    category: "Contagem",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso à função de 'Contagem de Estoque'.",
+    oQueFaz: "Remove o caminho Menu > Contagem de Estoque do sistema.",
+    oQueNaoFaz: "Não impede acesso à função 'Posição e contagem de estoque'."
+  },
+  {
+    name: "Deleção de movimentações",
+    session: "Controle de Estoque",
+    category: "Movimentações",
+    nivel: "critica",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário delete movimentações de estoque em Menu > Movimentações de estoque.",
+    oQueFaz: "Remove o caminho para deleção de movimentações de estoque (três pontinhos > Habilitar operação de deleção por seleção).",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Entrada/Saída manual de estoque",
+    session: "Controle de Estoque",
+    category: "Movimentações",
+    nivel: "sensivel",
+    confianca: "✅",
+    objetivo: "Impedir acesso à função de 'Movimentações de estoque'.",
+    oQueFaz: "Remove o caminho Menu > Movimentações de estoque do sistema.",
+    oQueNaoFaz: "Não impede acesso à função 'Posição e contagem de estoque' e a realização de entradas e saídas por ajuste no estoque."
+  },
+  {
+    name: "Grupos de ingrediente",
+    session: "Controle de Estoque",
+    category: "Ingredientes",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso à função de 'Grupos de ingredientes'.",
+    oQueFaz: "Remove o caminho Menu > Grupos de ingredientes do sistema.",
+    oQueNaoFaz: "Não impede alterar o grupo vinculado aos ingredientes e insumos."
+  },
+  {
+    name: "Histórico de posição de estoque",
+    session: "Controle de Estoque",
+    category: "Relatório",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso à função de 'Histórico de posição de estoque'.",
+    oQueFaz: "Remove o caminho Menu > Histórico de posição de estoque do sistema.",
+    oQueNaoFaz: "Não impede acesso à função 'Posição e contagem de estoque' e a visualização da posição de estoque em dias anteriores."
+  },
+  {
+    name: "Importação de NFe",
+    session: "Controle de Estoque",
+    category: "Notas Fiscais",
+    nivel: "sensivel",
+    confianca: "✅",
+    objetivo: "Impedir acesso à função de 'Notas de entrada'.",
+    oQueFaz: "Remove o caminho Menu > Notas de entrada de estoque do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Ingredientes e ficha técnica",
+    session: "Controle de Estoque",
+    category: "Ingredientes",
+    nivel: "sensivel",
+    confianca: "✅",
+    objetivo: "Impedir acesso à função de 'Ingredientes e insumos'.",
+    oQueFaz: "Remove o caminho Menu > Ingredientes e insumos do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Lista de compras",
+    session: "Controle de Estoque",
+    category: "Compras",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso à função de 'Lista de compras'.",
+    oQueFaz: "Remove o caminho Menu > Lista de compras do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Mostrar qtde e permitir ajuste na posição estoque",
+    session: "Controle de Estoque",
+    category: "Contagem",
+    nivel: "sensivel",
+    confianca: "✅",
+    objetivo: "Impedir a alteração e visualização do estoque atual de ingredientes e insumos através do fluxo de conferência de posição de estoque.",
+    oQueFaz: "Remove as colunas 'QTDE CONFERIDA' e 'ESTOQUE ATUAL' em Menu > Posição e contagem de estoque do sistema.",
+    oQueNaoFaz: "Não impede lançar movimentação de 'Entrada por ajuste' ou 'Saída por ajuste' via Menu > Movimentações de estoque / Não impede de visualizar estoque atual dos ingredientes e insumos via Menu > Ingredientes e insumos."
+  },
+  {
+    name: "Ordem de compra",
+    session: "Controle de Estoque",
+    category: "Compras",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso à função de 'Ordem de compra'.",
+    oQueFaz: "Remove o caminho Menu > Ordem de compra do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Posição e contagem de estoque",
+    session: "Controle de Estoque",
+    category: "Contagem",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso à função de 'Posição e contagem de estoque'.",
+    oQueFaz: "Remove o caminho Menu > Posição e contagem de estoque do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Relatório de CMV Real",
+    session: "Controle de Estoque",
+    category: "CMV",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir acesso à função de 'Relatório CMV real'.",
+    oQueFaz: "Remove o caminho Menu > Relatório CMV real do sistema.",
+    oQueNaoFaz: "Não impede acesso a outras 'fontes' de análise de CMV, como relatório DRE, Análise e simulação CMV e Itens Consumidos."
+  },
+
+  // ──────────────────────────────────────────────────────────────
+  // OPÇÕES DA LOJA
+  // ──────────────────────────────────────────────────────────────
+  {
+    name: "Alteração de senha dos usuários",
+    session: "Opções da Loja",
+    category: "Usuários",
+    nivel: "critica",
+    confianca: "✅",
+    objetivo: "Impedir que um usuário que possui a permissão 'Gerenciamento de usuários' tenha acesso também a alteração de senhas dos demais usuários do restaurante.",
+    oQueFaz: "Remove o botão de 'senha' ao lado dos usuários em Menu > Usuários e permissões.",
+    oQueNaoFaz: "Não impede que o usuário altere a sua própria senha."
+  },
+  {
+    name: "Áreas de entrega",
+    session: "Opções da Loja",
+    category: "Delivery",
+    nivel: "sensivel",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário altere regiões de entrega e valores de taxa de entrega do delivery do restaurante.",
+    oQueFaz: "Remove o caminho Menu > Áreas de entrega do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Canais de venda",
+    session: "Opções da Loja",
+    category: "Integrações",
+    nivel: "sensivel",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário tenha acesso às configurações de integrações, Site Delivery (SAIPOS) e Cardápio Digital QR Code.",
+    oQueFaz: "Remove o caminho Menu > Canais de venda e integrações do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Configurações",
+    session: "Opções da Loja",
+    category: "Configuração",
+    nivel: "critica",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário edite configurações de impressão, vendas, cupom fiscal, frente de caixa e roteirização.",
+    oQueFaz: "Remove o caminho Menu > Configurações do sistema.",
+    oQueNaoFaz: "Não impede edição em configurações alheias ao caminho Menu > Configurações."
+  },
+  {
+    name: "Dados da loja",
+    session: "Opções da Loja",
+    category: "Cadastro",
+    nivel: "critica",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário edite os dados da loja, como CNPJ, razão social e demais parâmetros fiscais.",
+    oQueFaz: "Remove o caminho Menu > Dados da loja do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Dados fiscais",
+    session: "Opções da Loja",
+    category: "Fiscal",
+    nivel: "critica",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário edite, crie ou exclua dados fiscais.",
+    oQueFaz: "Remove o caminho Menu > Dados fiscais do sistema.",
+    oQueNaoFaz: "Não impede editar o vínculo de dados fiscais do cardápio."
+  },
+  {
+    name: "Entregadores",
+    session: "Opções da Loja",
+    category: "Cadastro",
+    nivel: "sensivel",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário edite, crie ou exclua cadastro de entregadores.",
+    oQueFaz: "Remove o caminho Menu > Entregadores do sistema.",
+    oQueNaoFaz: "-"
+  },
   {
     name: "Gerenciamento de Usuários",
     session: "Opções da Loja",
@@ -408,11 +876,82 @@ const permissoes = [
     oQueFaz: "Remove o caminho Menu > Usuários e permissões do sistema.",
     oQueNaoFaz: "-"
   },
-
-  
-
   {
-    name: "Clientes",
+    name: "Inutilização de Notas Fiscais",
+    session: "Opções da Loja",
+    category: "Fiscal",
+    nivel: "critica",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário registre inutilização de notas e cupons fiscais.",
+    oQueFaz: "Remove o caminho Menu > Inutilização de notas fiscais do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Mesas",
+    session: "Opções da Loja",
+    category: "Salão",
+    nivel: "sensivel",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário cadastre, edite ou exclua mesas do Módulo de Salão.",
+    oQueFaz: "Remove o caminho Menu > Mesas do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Modelos de impressão",
+    session: "Opções da Loja",
+    category: "Impressão",
+    nivel: "sensivel",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário habilite e edite os modelos personalizados de impressão.",
+    oQueFaz: "Remove o caminho Menu > Modelos de impressão do sistema.",
+    oQueNaoFaz: "Não impede de realizar outras configurações de impressão."
+  },
+  {
+    name: "Motivos para cancelamento",
+    session: "Opções da Loja",
+    category: "Cancelamento",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário crie, edite ou exclua motivos de cancelamento.",
+    oQueFaz: "Remove o caminho Menu > Motivos de cancelamento do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Receber impressão em fila única",
+    session: "Opções da Loja",
+    category: "Impressão",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário assuma a Fila Única de Impressão (receba solicitações de impressão em seu usuário).",
+    oQueFaz: "Remove o caminho Menu > Motivos de cancelamento do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Status das vendas",
+    session: "Opções da Loja",
+    category: "Vendas",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário crie, edita ou remova status das vendas.",
+    oQueFaz: "Remove o caminho Menu > Status da venda do sistema.",
+    oQueNaoFaz: "-"
+  },
+  {
+    name: "Turnos",
+    session: "Opções da Loja",
+    category: "Operacional",
+    nivel: "operacional",
+    confianca: "✅",
+    objetivo: "Impedir que o usuário crie, edita ou remova turnos.",
+    oQueFaz: "Remove o caminho Menu > Turnos do sistema.",
+    oQueNaoFaz: "-"
+  },
+
+  // ──────────────────────────────────────────────────────────────
+  // RELACIONAMENTO COM CLIENTE
+  // ──────────────────────────────────────────────────────────────
+  {
+    name: "Cadastro de clientes",
     session: "Relacionamento com Cliente",
     category: "Cadastro",
     nivel: "sensivel",
@@ -421,19 +960,10 @@ const permissoes = [
     oQueFaz: "Remove o caminho Menu > Cadastro de clientes do sistema.",
     oQueNaoFaz: "Não impede cadastrar/editar clientes via Módulo de Delivery."
   },
-  {
-    name: "Cupons de desconto",
-    session: "Relacionamento com Cliente",
-    category: "Promoções",
-    nivel: "sensivel",
-    confianca: "✅",
-    objetivo: "Controlar acesso ao cadastro e gerenciamento de cupons de desconto.",
-    oQueFaz: "Restringe acesso ao gerenciamento de cupons de desconto no sistema.",
-    oQueNaoFaz: "Detalhamento não encontrado na análise."
-  },
 
-  
-
+  // ──────────────────────────────────────────────────────────────
+  // APLICATIVO SAIPOS GESTÃO
+  // ──────────────────────────────────────────────────────────────
   {
     name: "Acesso ao Aplicativo SAIPOS Gestão",
     session: "Aplicativo",
@@ -444,5 +974,4 @@ const permissoes = [
     oQueFaz: "Faz com que, ao tentar acessar o aplicativo Saipos Gestão, exiba a modal 'Usuário sem permissão para acessar o aplicativo'.",
     oQueNaoFaz: "Não impede acesso, via sistema web, a informações de vendas por período e afins, que estão também presentes no aplicativo."
   }
-
 ];
